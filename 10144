@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植光選物 Lumina Flora | 點亮城市綠洲的智能植栽美學</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sage: '#5F7463',      // 鼠尾草綠
+                            moss: '#3B4E3D',      // 苔蘚深綠
+                            sand: '#EFECE6',      // 暖砂色 (背景)
+                            cream: '#F7F5F0',     // 乳白
+                            earth: '#A38B75',     // 陶土大地色
+                            charcoal: '#2C302E',  // 石墨灰 (文字)
+                            accent: '#D4A373'     // 暖黃日光亮色
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #EFECE6;
+            color: #2C302E;
+            font-family: 'Plus Jakarta Sans', 'Noto Serif TC', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(239, 236, 230, 0.3) 0%, rgba(239, 236, 230, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1545241047-6083a3684587?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .glass-card {
+            background: rgba(247, 245, 240, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-sage selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-brand-sand/90 backdrop-blur-md border-b border-brand-earth/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-full bg-brand-sage flex items-center justify-center text-white transition-transform group-hover:scale-105">
+                    <i class="fa-solid font-leaf text-sm"></i>
+                    <i class="fa-solid fa-plant-wilt text-xs hidden"></i>
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-semibold text-lg text-brand-moss tracking-wider">植光選物</span>
+                    <span class="text-[10px] tracking-widest text-brand-earth uppercase font-sans">Lumina Flora</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-charcoal/80">
+                <a href="#about" class="hover:text-brand-sage transition-colors">品牌故事</a>
+                <a href="#values" class="hover:text-brand-sage transition-colors">品牌價值</a>
+                <a href="#products" class="hover:text-brand-sage transition-colors">核心產品</a>
+                <a href="#faq" class="hover:text-brand-sage transition-colors">常見問題 FAQ</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#products" class="px-5 py-2.5 rounded-full bg-brand-moss text-white text-xs tracking-wider hover:bg-brand-sage transition-all shadow-sm">
+                    探索產品 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden text-brand-moss text-xl p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-cream border-b border-brand-earth/10 px-6 py-6 flex flex-col gap-4">
+            <a href="#about" class="mobile-link text-brand-charcoal hover:text-brand-sage py-1">品牌故事</a>
+            <a href="#values" class="mobile-link text-brand-charcoal hover:text-brand-sage py-1">品牌價值</a>
+            <a href="#products" class="mobile-link text-brand-charcoal hover:text-brand-sage py-1">核心產品</a>
+            <a href="#faq" class="mobile-link text-brand-charcoal hover:text-brand-sage py-1">常見問題 FAQ</a>
+            <a href="#products" class="mobile-link text-center mt-2 px-5 py-2.5 rounded-full bg-brand-moss text-white text-xs tracking-wider">
+                探索產品
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-bg min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-cream/80 border border-brand-earth/20 text-xs text-brand-moss font-medium mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    極簡 · 科技 · 大地美學
+                </div>
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-brand-moss font-normal leading-tight mb-6">
+                    讓綠意走進都市日常<br>
+                    <span class="font-semibold text-brand-earth italic">用科技點亮</span>植物靈魂
+                </h1>
+                <p class="text-base sm:text-lg text-brand-charcoal/80 font-light leading-relaxed mb-8">
+                    我們是一個質感生活植栽與智能養護品牌，透過美學植光燈具與智慧養護科技，讓忙碌的都市人在任何角落都能無痛打造充滿療癒力的居家綠洲。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#products" class="px-8 py-4 rounded-full bg-brand-moss text-white font-medium text-sm text-center shadow-lg hover:bg-brand-sage hover:shadow-xl transition-all">
+                        探索選物系列
+                    </a>
+                    <a href="#about" class="px-8 py-4 rounded-full bg-brand-cream text-brand-moss border border-brand-earth/20 font-medium text-sm text-center hover:bg-white transition-all">
+                        了解品牌故事
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Decorative Element -->
+        <div class="hidden lg:block absolute right-12 bottom-20 w-80 p-6 rounded-2xl glass-card shadow-xl">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-brand-sage/20 flex items-center justify-center text-brand-moss">
+                    <i class="fa-solid fa-sun text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-serif font-semibold text-sm text-brand-moss">全光譜智能照射</h4>
+                    <p class="text-xs text-brand-charcoal/60">擬真自然太陽光 99.2%</p>
+                </div>
+            </div>
+            <p class="text-xs text-brand-charcoal/70 leading-relaxed">
+                專為室內日光不足空間設計，精準補給植物光合作用所需之波段。
+            </p>
+        </div>
+    </section>
+
+    <!-- Brand Concept & Story -->
+    <section id="about" class="py-24 bg-brand-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Image Gallery Grid -->
+                <div class="grid grid-cols-2 gap-4 relative">
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop" alt="質感居家植物" class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-md">
+                        <div class="bg-brand-sand p-6 rounded-2xl border border-brand-earth/20">
+                            <span class="text-3xl font-serif text-brand-sage font-bold block mb-1">98%</span>
+                            <span class="text-xs text-brand-charcoal/70">高滿意度都市養護成效</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <div class="bg-brand-moss text-white p-6 rounded-2xl shadow-md">
+                            <i class="fa-solid fa-quote-left text-brand-accent text-2xl mb-3 block"></i>
+                            <p class="text-xs sm:text-sm font-light leading-relaxed">讓光成為最溫柔的語言，撫平都市生活的浮躁。</p>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1509937528035-ad76254b0356?q=80&w=800&auto=format&fit=crop" alt="植光燈具細節" class="rounded-2xl object-cover w-full h-56 sm:h-72 shadow-md">
+                    </div>
+                </div>
+
+                <!-- Brand Story Content -->
+                <div class="space-y-6">
+                    <div class="inline-block px-3 py-1 rounded-full bg-brand-sage/10 text-brand-moss text-xs font-semibold tracking-widest uppercase">
+                        Brand Concept & Story
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-brand-moss font-normal leading-snug">
+                        打破採光限制，<br>在房間打造一片永不枯萎的角落。
+                    </h2>
+                    <div class="space-y-4 text-brand-charcoal/80 text-sm sm:text-base font-light leading-relaxed">
+                        <p>
+                            創辦人曾是一名高壓的城市上班族，在陰暗的小公寓裡熱愛植物卻屢屢養枯萎。深知採光不足與時間緊湊是現代都市養植的最大障礙。
+                        </p>
+                        <p>
+                            為了打破「日光不足、無暇照顧」的養護痛點，我們整合光學工程與極簡家居美學，研發出全光譜智能植光燈，並精選極具生命力且適合室內的質感植栽。
+                        </p>
+                        <p>
+                            「植光選物」由此誕生——我們希望讓每一個缺乏日光的城市角落，都能以最優雅、無負擔的方式，綻放綠色的生命力。
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-brand-earth/20 grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-serif font-semibold text-brand-moss text-base">智能極簡設計</h4>
+                            <p class="text-xs text-brand-charcoal/60 mt-1">融入各式居家風格，無痕補光</p>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-semibold text-brand-moss text-base">安心陪伴養護</h4>
+                            <p class="text-xs text-brand-charcoal/60 mt-1">智慧監測提供精準數據指示</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Values (4 Core Values) -->
+    <section id="values" class="py-24 bg-brand-sand">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold text-brand-earth uppercase tracking-widest block mb-2">Core Values</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-brand-moss">品牌四大價值</h2>
+                <div class="w-12 h-0.5 bg-brand-sage mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Value Card 1 -->
+                <div class="bg-brand-cream p-8 rounded-2xl border border-brand-earth/15 hover:border-brand-sage/40 transition-all hover:-translate-y-1 shadow-sm group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-sage/15 text-brand-moss flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-sage group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-moss mb-3">永續美學</h3>
+                    <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light">
+                        採用可回收金屬與環保介質，將自然元素與極簡家居裝潢無縫融入，營造和諧視覺享受。
+                    </p>
+                </div>
+
+                <!-- Value Card 2 -->
+                <div class="bg-brand-cream p-8 rounded-2xl border border-brand-earth/15 hover:border-brand-sage/40 transition-all hover:-translate-y-1 shadow-sm group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-sage/15 text-brand-moss flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-sage group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-moss mb-3">輕鬆養護</h3>
+                    <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light">
+                        結合智慧定時補光與土壤濕度感測，將養護門檻降到最低，零經驗也能上手。
+                    </p>
+                </div>
+
+                <!-- Value Card 3 -->
+                <div class="bg-brand-cream p-8 rounded-2xl border border-brand-earth/15 hover:border-brand-sage/40 transition-all hover:-translate-y-1 shadow-sm group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-sage/15 text-brand-moss flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-sage group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-moss mb-3">生活儀式感</h3>
+                    <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light">
+                        柔和的植光色溫兼具夜燈功能，為高壓忙碌的日常注入平靜、專屬與靜謐的陪伴感。
+                    </p>
+                </div>
+
+                <!-- Value Card 4 -->
+                <div class="bg-brand-cream p-8 rounded-2xl border border-brand-earth/15 hover:border-brand-sage/40 transition-all hover:-translate-y-1 shadow-sm group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-sage/15 text-brand-moss flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-sage group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-moss mb-3">客製化諮詢</h3>
+                    <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light">
+                        提供專屬的植物與空間光照診斷，陪伴每位顧客找到最適合自己角落的生命夥伴。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Products Showcase -->
+    <section id="products" class="py-24 bg-brand-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs font-semibold text-brand-earth uppercase tracking-widest block mb-2">Selected Collection</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-brand-moss">核心選物產品</h2>
+                </div>
+                <p class="text-sm text-brand-charcoal/70 mt-4 md:mt-0 max-w-md">
+                    專為都市室內環境量身打造，兼具智慧科技與極簡大地工藝設計。
+                </p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-brand-sand rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1508022057380-3331be272f3d?q=80&w=800&auto=format&fit=crop" alt="極簡光譜檯燈" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-brand-moss text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">熱銷明星</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-semibold text-lg text-brand-moss">Lumina Halo 極簡光譜檯燈</h3>
+                            <span class="text-brand-earth font-semibold text-sm">NT$ 2,880</span>
+                        </div>
+                        <p class="text-xs text-brand-charcoal/70 leading-relaxed mb-6 font-light">
+                            霧面鋁合金燈體，內建全光譜 LED 與三段自動定時補光功能，兼具極簡閱覽燈與植物生長光調。
+                        </p>
+                        <button class="w-full py-3 rounded-xl border border-brand-moss/30 text-brand-moss text-xs font-medium hover:bg-brand-moss hover:text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-shopping text-xs"></i> 查看詳情
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-brand-sand rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=800&auto=format&fit=crop" alt="室內淨化植栽套組" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-brand-sage text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">新手推薦</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-semibold text-lg text-brand-moss">室內空氣淨化耐陰植栽組</h3>
+                            <span class="text-brand-earth font-semibold text-sm">NT$ 1,480</span>
+                        </div>
+                        <p class="text-xs text-brand-charcoal/70 leading-relaxed mb-6 font-light">
+                            精選虎尾蘭、龜背竹等低光照高淨化空氣植栽，搭配手工陶土吸水盆器與調配介質。
+                        </p>
+                        <button class="w-full py-3 rounded-xl border border-brand-moss/30 text-brand-moss text-xs font-medium hover:bg-brand-moss hover:text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-shopping text-xs"></i> 查看詳情
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-brand-sand rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?q=80&w=800&auto=format&fit=crop" alt="智慧土壤感測配件" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-semibold text-lg text-brand-moss">FloraSense 智慧土壤感測儀</h3>
+                            <span class="text-brand-earth font-semibold text-sm">NT$ 980</span>
+                        </div>
+                        <p class="text-xs text-brand-charcoal/70 leading-relaxed mb-6 font-light">
+                            即時監測水分、肥力與環境溫濕度，藍牙連線手機 App，自動發送澆水提醒，再也不怕缺水。
+                        </p>
+                        <button class="w-full py-3 rounded-xl border border-brand-moss/30 text-brand-moss text-xs font-medium hover:bg-brand-moss hover:text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-shopping text-xs"></i> 查看詳情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand FAQ Section (Who, What, Why, How) -->
+    <section id="faq" class="py-24 bg-brand-sand border-t border-brand-earth/10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-semibold text-brand-earth uppercase tracking-widest block mb-2">Understanding Us</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-brand-moss">品牌常見問題 FAQ</h2>
+                <p class="text-sm text-brand-charcoal/60 mt-2">深入了解「植光選物」的核心精神與服務定位</p>
+            </div>
+
+            <!-- FAQ Accordion Container -->
+            <div class="space-y-4">
+                <!-- FAQ Item 1: Who -->
+                <div class="bg-brand-cream rounded-2xl border border-brand-earth/20 overflow-hidden transition-all">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-sage/20 text-brand-moss text-xs font-bold flex items-center justify-center">01</span>
+                            <h3 class="font-serif font-semibold text-base sm:text-lg text-brand-moss">Who｜植光選物為誰存在？</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-brand-moss transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-6 text-sm text-brand-charcoal/80 leading-relaxed font-light pl-12">
+                            我們為生活在採光不足的都市公寓、工作繁忙無暇繁瑣照顧，卻依然渴望在家中享受自然綠意療癒力的現代生活者而存在。無論你是剛接觸植物的新手，或是高壓環境下的上班族，我們都希望能為你點亮綠洲。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2: What -->
+                <div class="bg-brand-cream rounded-2xl border border-brand-earth/20 overflow-hidden transition-all">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-sage/20 text-brand-moss text-xs font-bold flex items-center justify-center">02</span>
+                            <h3 class="font-serif font-semibold text-base sm:text-lg text-brand-moss">What｜品牌提供什麼產品或服務？</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-brand-moss transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-6 text-sm text-brand-charcoal/80 leading-relaxed font-light pl-12">
+                            我們提供極簡美學設計的「全光譜智能植光燈具」、適合居家擺放的「耐陰淨化植物套組」、「智慧感測配件」以及專屬植物線上記錄諮詢服務。從硬體光照到軟體養護指南，一手包辦。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3: Why -->
+                <div class="bg-brand-cream rounded-2xl border border-brand-earth/20 overflow-hidden transition-all">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-sage/20 text-brand-moss text-xs font-bold flex items-center justify-center">03</span>
+                            <h3 class="font-serif font-semibold text-base sm:text-lg text-brand-moss">Why｜為什麼你需要這個品牌？</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-brand-moss transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-6 text-sm text-brand-charcoal/80 leading-relaxed font-light pl-12">
+                            傳統養植物常因為「日照不足」或「水分掌握不當」而導致枯萎，帶來挫折感。「植光選物」透過擬真日光的科技補色與數據感測，降低 90% 的養護門檻，讓你在無光的角落也能無痛享受綠色生活的美好。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4: How -->
+                <div class="bg-brand-cream rounded-2xl border border-brand-earth/20 overflow-hidden transition-all">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-sage/20 text-brand-moss text-xs font-bold flex items-center justify-center">04</span>
+                            <h3 class="font-serif font-semibold text-base sm:text-lg text-brand-moss">How｜品牌如何與消費者溝通？</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-brand-moss transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-6 text-sm text-brand-charcoal/80 leading-relaxed font-light pl-12">
+                            我們透過極簡視覺的社群媒體（Instagram/Pinterest）分享質感居家綠意靈感、透過 LINE 官方帳號提供 AI 養護診斷，並持續撰寫淺顯易懂的養護心法文章，以溫暖且平易近人的口吻陪伴大家成長。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Manifesto Box -->
+    <section class="py-16 bg-brand-moss text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fa-solid fa-seedling text-3xl text-brand-accent mb-4 block"></i>
+            <h3 class="font-serif text-2xl sm:text-3xl font-light mb-6 leading-relaxed">
+                我們是一個 <span class="text-brand-accent font-normal">質感生活植栽與智能養護</span> 品牌，<br>
+                透過 <span class="text-brand-accent font-normal">美學植光燈具與智慧養護科技</span>，<br>
+                讓 <span class="text-brand-accent font-normal">忙碌的都市人在任何角落都能無痛打造充滿療癒力的居家綠洲</span>。
+            </h3>
+            <p class="text-xs text-brand-sand/60 tracking-widest uppercase">—— 植光選物 Lumina Flora 品牌核心宣言</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-brand-cream py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Col 1 -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-brand-sage flex items-center justify-center text-white text-xs">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <span class="font-serif text-lg tracking-wider">植光選物</span>
+                </div>
+                <p class="text-xs text-brand-sand/60 leading-relaxed">
+                    點亮城市綠洲的智能植栽美學。<br>讓陽光不再是居家養綠的限制。
+                </p>
+            </div>
+
+            <!-- Col 2 -->
+            <div>
+                <h4 class="font-serif text-sm font-semibold mb-4 text-brand-earth">快速連結</h4>
+                <ul class="space-y-2 text-xs text-brand-sand/70">
+                    <li><a href="#about" class="hover:text-white transition-colors">品牌故事</a></li>
+                    <li><a href="#values" class="hover:text-white transition-colors">核心價值</a></li>
+                    <li><a href="#products" class="hover:text-white transition-colors">選物系列</a></li>
+                    <li><a href="#faq" class="hover:text-white transition-colors">品牌 FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div>
+                <h4 class="font-serif text-sm font-semibold mb-4 text-brand-earth">聯絡我們</h4>
+                <ul class="space-y-2 text-xs text-brand-sand/70">
+                    <li><i class="fa-regular fa-envelope mr-2"></i> hello@luminaflora.com</li>
+                    <li><i class="fa-solid fa-phone mr-2"></i> (02) 2789-0123</li>
+                    <li><i class="fa-solid fa-location-dot mr-2"></i> 台北市大安區綠意路 108 號 1 樓</li>
+                </ul>
+            </div>
+
+            <!-- Col 4 -->
+            <div>
+                <h4 class="font-serif text-sm font-semibold mb-4 text-brand-earth">關注我們</h4>
+                <div class="flex gap-4 text-lg text-brand-sand/70">
+                    <a href="#" class="hover:text-brand-accent transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-brand-accent transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-brand-accent transition-colors" aria-label="Line"><i class="fa-brands fa-line"></i></a>
+                    <a href="#" class="hover:text-brand-accent transition-colors" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+                <p class="text-[10px] text-brand-sand/40 mt-6">
+                    © 2026 Lumina Flora. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // FAQ Accordion Toggle
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+
+                // Close other opened FAQs
+                document.querySelectorAll('.faq-content').forEach(item => {
+                    if (item !== content) {
+                        item.style.maxHeight = null;
+                        item.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Toggle Current FAQ
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
